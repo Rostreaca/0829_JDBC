@@ -24,16 +24,29 @@ public class InsertRun {
 		String plantName = sc.nextLine();
 		System.out.print("식물 종류를 입력해주세요 : ");
 		String plantType = sc.nextLine();
-		
-		String sql = "INSERT"
-				    +"INTO"
-				            +"TB_PLANT"
+		System.out.print("판매가를 입력해주세요 : ");
+		int price = sc.nextInt();
+		sc.nextLine();
+		System.out.print("입고날짜를 입력해주세요 : ");
+		String storeDate = sc.nextLine();
+		System.out.print("식물의 색을 입력해주세요 : ");
+		String color = sc.nextLine();
+		System.out.print("개화시기(월)를 입력해주세요 : ");
+		int period = sc.nextInt();
+		sc.nextLine();
+		String sql = "INSERT "
+				    +"INTO "
+				            +"TB_PLANT "
 				    +"VALUES"
-				            +"("
+				           +"("
 				            +plantId
 				      +", '"+plantName+"'"
 				      +", '"+plantType+"'"
-				            +")";
+				       +", "+price
+				      +", '"+storeDate+"'"
+				      +", '"+color+"'"
+				       +", "+period
+				           +")";
 		
 		
 		try {
