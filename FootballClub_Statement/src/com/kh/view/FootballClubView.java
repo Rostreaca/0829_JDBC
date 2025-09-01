@@ -66,9 +66,9 @@ public class FootballClubView {
 		int salary = sc.nextInt();
 		sc.nextLine();
 		System.out.print("계약 시작일을 입력해주세요 : ");
-		Date contractDate = sc.nextLine();
+		Object contractDate = sc.nextLine();
 		System.out.print("계약 종료일을 입력해주세요 : ");
-		Date expiryDate = sc.nextLine();
+		Object expiryDate = sc.nextLine();
 		
 		fcc.addPlayer(playerNo, playerName, gender, position,height,weight, dominantFoot,salary, contractDate, expiryDate);
 		
