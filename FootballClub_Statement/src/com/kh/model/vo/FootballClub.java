@@ -15,10 +15,22 @@ public class FootballClub {
 	private String dominantFoot;
 	private int salary;
 	private Date contractDate;
-	private Date expiryDate;
 	
 	public FootballClub(int playerNo, String playerName, char gender, String position, int height, int weight,
-			String dominantFoot, int salary, Date contractDate, Date expiryDate) {
+			String dominantFoot, int salary) {
+		super();
+		this.playerNo = playerNo;
+		this.playerName = playerName;
+		this.gender = gender;
+		this.position = position;
+		this.height = height;
+		this.weight = weight;
+		this.dominantFoot = dominantFoot;
+		this.salary = salary;
+	}
+
+	public FootballClub(int playerNo, String playerName, char gender, String position, int height, int weight,
+			String dominantFoot, int salary, Date contractDate) {
 		super();
 		this.playerNo = playerNo;
 		this.playerName = playerName;
@@ -29,19 +41,10 @@ public class FootballClub {
 		this.dominantFoot = dominantFoot;
 		this.salary = salary;
 		this.contractDate = contractDate;
-		this.expiryDate = expiryDate;
 	}
 
 	public FootballClub() {
 		super();
-	}
-
-	@Override
-	public String toString() {
-		return "FootballClub [playerNo=" + playerNo + ", playerName=" + playerName + ", gender=" + gender
-				+ ", position=" + position + ", height=" + height + ", weight=" + weight + ", dominantFoot="
-				+ dominantFoot + ", salary=" + salary + ", contractDate=" + contractDate + ", expiryDate=" + expiryDate
-				+ "]";
 	}
 
 	public int getPlayerNo() {
@@ -116,18 +119,16 @@ public class FootballClub {
 		this.contractDate = contractDate;
 	}
 
-	public Date getExpiryDate() {
-		return expiryDate;
-	}
-
-	public void setExpiryDate(Date expiryDate) {
-		this.expiryDate = expiryDate;
+	@Override
+	public String toString() {
+		return "FootballClub [playerNo=" + playerNo + ", playerName=" + playerName + ", gender=" + gender
+				+ ", position=" + position + ", height=" + height + ", weight=" + weight + ", dominantFoot="
+				+ dominantFoot + ", salary=" + salary + ", contractDate=" + contractDate + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(contractDate, dominantFoot, expiryDate, gender, height, playerName, playerNo, position,
-				salary, weight);
+		return Objects.hash(contractDate, dominantFoot, gender, height, playerName, playerNo, position, salary, weight);
 	}
 
 	@Override
@@ -140,12 +141,12 @@ public class FootballClub {
 			return false;
 		FootballClub other = (FootballClub) obj;
 		return Objects.equals(contractDate, other.contractDate) && Objects.equals(dominantFoot, other.dominantFoot)
-				&& Objects.equals(expiryDate, other.expiryDate) && gender == other.gender && height == other.height
-				&& Objects.equals(playerName, other.playerName) && playerNo == other.playerNo
-				&& Objects.equals(position, other.position) && salary == other.salary && weight == other.weight;
+				&& gender == other.gender && height == other.height && Objects.equals(playerName, other.playerName)
+				&& playerNo == other.playerNo && Objects.equals(position, other.position) && salary == other.salary
+				&& weight == other.weight;
 	}
-	
-	
+
+
 	
 	
 }
