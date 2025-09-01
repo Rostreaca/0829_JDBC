@@ -23,6 +23,23 @@ public class MemberView {
 	 * 프로그램 구동 시 사용자에게 메인화면을 출력해주는 메소드입니다.
 	 */
 	public void mainMenu() {
+		/*
+		 * 2025 / 09 / 01 오늘의 실습 겸 숙제
+		 * 
+		 * 금요일 숙제 3번 --> 나만의 테이블 만들기
+		 * 
+		 * 나만의 테이블에 INSERT 
+		 * 전체 조회
+		 * 유니크제약조건 걸려있는 컬럼으로 조회
+		 * LIKE키워드 써서 조회
+		 * 
+		 * or 2번 --> PLANT테이블로 하기
+		 * 
+		 * 
+		 */
+		
+		
+		
 		while(true) {
 			System.out.println(" ---- 회원관리 프로그램 ---- ");
 			System.out.println("1. 회원 추가");
@@ -157,7 +174,6 @@ public class MemberView {
 				System.out.println((i + 1) + "번 째 조회결과!");
 				System.out.println(members.get(i));
 			}
-			
 			
 		}
 		
