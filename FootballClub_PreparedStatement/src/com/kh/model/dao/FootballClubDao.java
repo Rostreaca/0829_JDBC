@@ -442,8 +442,8 @@ public class FootballClubDao {
 			}
 		}
 		
-		
 		return result;
 	}
+	
 	
 }
