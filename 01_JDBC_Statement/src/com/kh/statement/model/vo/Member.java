@@ -7,6 +7,8 @@ import java.util.Objects;
  * VO(Value Object) => 값 객체
  * => 테이블의 한 행에 대한 데이터를 기록할 저장용 객체
  * 
+ * VO가 가져야할 특성 == 불변성 - VO클래스에는 setter를 넣지 않는게 원칙
+ * 
  * VO클래스의 필드 구성 자체를 MEMBER테이블의 컬럼들과 유사하게 구성
  * SEQUENCE 및 DEFAULT값을 조건으로 사용하는 경우
  * 해당 필드를 제외한 나머지 필드값을 초기화 할 수 있는 생성자를 추가로 구성해둘 것
