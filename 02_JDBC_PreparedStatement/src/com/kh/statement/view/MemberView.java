@@ -36,6 +36,12 @@ public class MemberView {
 		 * 
 		 * or 2번 --> PLANT테이블로 하기
 		 * 
+		 * 2025 / 09 / 02 오늘의 실습겸 숙제
+		 * 
+		 * 어제했던 결과물을 -> PreparedStatement 버전으로 변경하기
+		 * +
+		 * 컬럼값 수정하는 기능
+		 * 한행 삭제하는 기능
 		 * 
 		 */
 		
