@@ -257,9 +257,10 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			// 7)
 			JDBCTemplate.close(pstmt);
 		}
-		
+		// 8)
 		return result;
 	}
 	
