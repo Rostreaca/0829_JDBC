@@ -184,15 +184,18 @@ UPDATE
        EMPLOYEE
    SET
        SALARY = ?
+     , JOB_CODE = (SELECT
+                          JOB_CODE
+                     FROM
+                          JOB J
+                    WHERE
+                          J.JOB_NAME = ?) 
      , DEPT_CODE = (SELECT
-			              DEPT_CODE
+			              DEPT_ID
 			         FROM
 			              DEPARTMENT
-			         JOIN
-			              EMPLOYEE ON (DEPT_CODE = DEPT_ID)
 			        WHERE
 			              DEPT_TITLE = ?)
-     , JOB_CODE = ?
  WHERE
        EMP_ID = ?
 

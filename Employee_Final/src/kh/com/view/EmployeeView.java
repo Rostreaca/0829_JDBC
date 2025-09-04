@@ -215,9 +215,9 @@ public class EmployeeView {
 		System.out.print("변경할 사원의 급여를 입력해주세요 > ");
 		int salary = sc.nextInt();
 		sc.nextLine();
-		System.out.print("변경할 직급번호를 입력해 주십시오 > ");
+		System.out.print("변경할 직급명을 입력해 주십시오 > ");
 		String jobCode = sc.nextLine();
-		System.out.print("변경할 부서번호를 입력해 주십시오 > ");
+		System.out.print("변경할 부서명을 입력해 주십시오 > ");
 		String deptCode = sc.nextLine();
 		
 		EmployeeDTO ed = new EmployeeDTO();

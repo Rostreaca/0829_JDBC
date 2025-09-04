@@ -247,8 +247,8 @@ public class EmployeeDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, ed.getSalary());
-			pstmt.setString(2, ed.getDeptCode());
-			pstmt.setString(3, ed.getJobCode());
+			pstmt.setString(2, ed.getJobCode());
+			pstmt.setString(3, ed.getDeptCode());
 			pstmt.setInt(4, ed.getEmpId());
 			result = pstmt.executeUpdate();
 			
