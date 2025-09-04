@@ -29,19 +29,19 @@ public class JDBCTemplate {
 	
 	// DB의 연결정보를 가지고 있는 Connection객체를 생성해서 반환해주는 메소드
 	public static Connection getConnection() {
-		
+
 		Properties prop = new Properties();
 		
 		try {
-			
 			prop.load(new FileInputStream("resources/driver.properties"));
 			
-			String keyA = prop.getProperty("A");
-			System.out.println("A 키값의 Value : " + keyA);
+//			String keyA = prop.getProperty("A");
+//			System.out.println("A 키값의 Value : " + keyA);
+//			sSystem.out.println(prop.getProperty("URL"));
 			
-			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@115.90.212.20:10000:XE"
-					                                     ,"PSH07"
-					                                     ,"PSH071234");
+			Connection conn = DriverManager.getConnection(prop.getProperty("URL")
+					                                     ,prop.getProperty("USERNAME")
+					                                     ,prop.getProperty("PASSWORD"));
 			
 			conn.setAutoCommit(false);
 			
