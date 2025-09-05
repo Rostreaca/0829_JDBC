@@ -242,7 +242,7 @@ public class EmployeeDAO {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("update");
+		String sql = prop.getProperty("updㅁate");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
