@@ -3,11 +3,15 @@ package com.kh.board.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.kh.board.model.dao.BoardDAO;
+import com.kh.board.model.dao.BoardRepository;
 import com.kh.board.model.dto.BoardDTO;
 import com.kh.board.model.vo.Board;
 import com.kh.common.JDBCTemplate;
-import com.kh.statement.model.dao.MemberDao;
+import com.kh.common.Template;
+import com.kh.statement.model.service.MemberService;
 import com.kh.statement.model.vo.Member;
 
 public class BoardService {
@@ -20,6 +24,7 @@ public class BoardService {
 	public int insertBoard(BoardDTO bd) {
 		// 내가 입력한 값을 가지고
 		// BOARD 테이블에 한 행 INSERT 해줘~~
+		SqlSession session = Template.getSqlSession();
 		int result = 0;
 		
 		// 1. 값의 유효성 검증
@@ -28,7 +33,8 @@ public class BoardService {
 		}
 		// 제목 : 안녕하세요, 내용 : 반갑습니다, 아이디 : admin
 		// 2. 인증 / 인가
-		Member member = new MemberDao().findById(conn, bd.getBoardWriter());
+		//Member member = new MemberDao().findById(conn, bd.getBoardWriter());
+		Member member = new MemberService().findById(bd.getBoardWriter());
 		
 		if(member != null) {
 			
@@ -39,37 +45,53 @@ public class BoardService {
 					                String.valueOf(userNo),
 					                null,
 					                null);
-			result = new BoardDAO().insertBoard(conn, board);
-		} 
-		if(result > 0) {
-			JDBCTemplate.commit(conn);
+			result = new BoardRepository().insertBoard(session, board);
 		}
-		JDBCTemplate.close(conn);
 		
+		if(result > 0) {
+		session.commit();
+		}
+		
+		session.close();
 		
 		return result;
 	}
 	
 	public List<Board> selectBoardList(){
+		/*
+		 * List<Board> boards = new BoardDAO().selectBoardList(conn);
+		 * 
+		 * new BoardDAO().outputHTML(conn);
+		 * 
+		 * JDBCTemplate.close(conn);
+		 */
 		
-		List<Board> boards = new BoardDAO().selectBoardList(conn);
+		SqlSession session = Template.getSqlSession();
 		
-		new BoardDAO().outputHTML(conn);
+		List<Board> boards = new BoardRepository().selectBoardList(session);
 		
-		JDBCTemplate.close(conn);
+		session.close();
 		
 		return boards;
 	}
 	
 	public Board selectBoard(int boardNo) {
-		
 		Board board = null;
+		/*
+		 * 
+		 * 
+		 * if(boardNo > 0) { board = new BoardDAO().selectBoard(conn, boardNo); }
+		 * 
+		 * JDBCTemplate.close(conn);
+		 */
 		
-		if(boardNo > 0) {
-			board = new BoardDAO().selectBoard(conn, boardNo);			
+		SqlSession session = Template.getSqlSession();
+		
+		if(boardNo >0) {
+			board = new BoardRepository().selectBoard(session,boardNo);
 		}
 		
-		JDBCTemplate.close(conn);
+		session.close();
 		
 		return board;
 		
@@ -77,13 +99,21 @@ public class BoardService {
 	
 	public int deleteBoard(int boardNo) {
 		
-		int result = new BoardDAO().deleteBoard(conn, boardNo);
+//		int result = new BoardDAO().deleteBoard(conn, boardNo);
+//		
+//		if(result > 0) {
+//			JDBCTemplate.commit(conn);
+//		}
+//		
+//		JDBCTemplate.close(conn);
+//		
+		SqlSession session = Template.getSqlSession();
 		
-		if(result > 0) {
-			JDBCTemplate.commit(conn);
+		int result = new BoardRepository().deleteBoard(session,boardNo);
+		
+		if(result>0) {
+			session.commit();
 		}
-		
-		JDBCTemplate.close(conn);
 		
 		return result;
 	}

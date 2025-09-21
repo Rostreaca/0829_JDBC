@@ -6,11 +6,18 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.kh.common.Template;
 import com.kh.statement.model.dao.MemberDao;
+import com.kh.statement.model.dto.PasswordDTO;
 import com.kh.statement.model.vo.Member;
 
 public class MemberService {
 	
 	private MemberDao memberDao = new MemberDao();
+	private SqlSession session = null;
+	
+	public MemberService() {
+		session = Template.getSqlSession();
+	}
+	
 	
 	public int save(Member member) {
 		/*
@@ -51,5 +58,49 @@ public class MemberService {
 		return members;
 	}
 	
+	public Member findById(String userId){
+		
+		SqlSession session = Template.getSqlSession();
+		
+		Member member = memberDao.findById(session, userId);
+		
+		session.close();
+		
+		return member;
+	}
+	
+	public List<Member> findByKeyword(String keyword){
+		
+		List<Member> members = memberDao.findByKeyword(session,keyword);
+		
+		session.close();
+		
+		return members;
+	}
+	
+	public int update(PasswordDTO pd) {
+		
+		int result = memberDao.update(session,pd);
+		
+		if(result > 0) {
+			session.commit();			
+		}
+				
+		session.close();
+		
+		return result;
+	}
+	
+	public int delete(Member member) {
+		int result = memberDao.delete(session,member);
+		
+		if(result > 0) {
+			session.commit();
+		}
+		
+		session.close();
+		
+		return result;
+	}
 	
 }

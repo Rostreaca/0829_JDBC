@@ -11,6 +11,7 @@ public class Board {
 	private Date createDate;      // CREATE_DATE DATE
 	private String deleteStatus;  // DELETE_STATUS CHAR(1)
 	
+	public Board() {}
 	// 모든 필드에 대한 매개변수 생성자
 	public Board(int boardNo, String boardTitle, String boardContent, String boardWriter, Date createDate,
 			String deleteStatus) {

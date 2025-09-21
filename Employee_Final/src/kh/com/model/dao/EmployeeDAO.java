@@ -10,51 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kh.com.common.JDBCTemplate;
 import kh.com.model.dto.EmployeeDTO;
 import kh.com.model.vo.Employee;
 
 public class EmployeeDAO {
 	
-	private Properties prop = new Properties();
-	
-	public EmployeeDAO() {
-		try {
-			prop.loadFromXML(new FileInputStream("resources/Employee-mapper.xml"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public List<Employee> findAll(Connection conn){
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		List<Employee> employees = new ArrayList();
-		
-		String sql = prop.getProperty("findAll");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				employees.add(new Employee(rset.getInt("EMP_ID")
-						                  ,rset.getString("EMP_NAME")
-						                  ,rset.getInt("SALARY")
-						                  ,rset.getString("DEPT_TITLE")
-						                  ,rset.getString("JOB_NAME")));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
-		}
-		
-		return employees;
+	public List<Employee> findAll(SqlSession session){
+		return session.selectList("employeeMapper.findAll");
 	}
 	
 	public List<Employee> findByDept(Connection conn, String dept){

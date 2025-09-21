@@ -19,7 +19,7 @@ public class Employee {
 	private Date hireDate;
 	
 	
-	
+	public Employee() {}
 
 	public Employee(int empId, String empName, int salary, String deptCode, String jobCode) {
 		super();

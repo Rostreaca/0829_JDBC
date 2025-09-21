@@ -91,6 +91,71 @@
              BY
                 ENROLLDATE DESC
     </select>
-
-
+    
+    <select id="findById"
+            parameterType="string"
+            resultType="member"
+            >
+        SELECT
+               USERNO
+             , USERID
+             , USERPWD
+             , USERNAME
+             , EMAIL
+             , ENROLLDATE
+          FROM
+               MEMBER
+         WHERE
+               USERID = #{userId}
+         ORDER
+            BY
+               ENROLLDATE DESC
+    
+    </select>
+    
+    <select id="findByKeyword"
+            parameterType="string"
+            resultType="member">
+        SELECT
+               USERNO
+             , USERID
+             , USERPWD
+             , USERNAME
+             , EMAIL
+             , ENROLLDATE
+          FROM
+               MEMBER
+         WHERE
+               USERNAME LIKE '%'||#{keyword}||'%'
+    
+    </select>
+    
+    <update id="update"
+            parameterType="com.kh.statement.model.dto.PasswordDTO">
+            UPDATE
+                   MEMBER
+               SET
+                   USERPWD = #{newPassword}
+             WHERE
+                   USERID = #{userId}
+               AND
+                   USERPWD = #{userPwd}
+    
+    
+    </update>
+    
+    <delete id="delete"
+            parameterType="member">
+            
+            DELETE
+              FROM
+                   MEMBER
+             WHERE
+                   USERID = #{userId}
+               AND
+                   USERPWD = #{userPwd}
+                        
+    </delete>
+    
+    
 </mapper>
